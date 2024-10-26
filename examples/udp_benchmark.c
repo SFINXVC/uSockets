@@ -9,7 +9,14 @@
 
 /* This one we allow here since we use it to create the peer addr.
  * We should remove this and replace it with bsd_addr_t and a builder function */
+#ifdef _WIN32
+// Windows-specific includes
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
+// Unix-specific includes
 #include <netinet/in.h>
+#endif
 
 struct us_udp_packet_buffer_t *send_buf;
 float messages = 0;
